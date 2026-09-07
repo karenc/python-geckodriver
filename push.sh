@@ -1,11 +1,11 @@
 #!/bin/bash
 
 amd64() {
-    docker build --platform 'linux/amd64' -f Dockerfile.linux64 . -t karenc/python-geckodriver:linux64
+    docker push --platform 'linux/amd64' karenc/python-geckodriver:linux64
 }
 
 arm64() {
-    docker build --platform 'linux/arm64' -f Dockerfile.linux-aarch64 . -t karenc/python-geckodriver:linux-aarch64
+    docker push --platform 'linux/arm64' karenc/python-geckodriver:linux-aarch64
 }
 
 while [ -n "$1" ]

@@ -8,6 +8,6 @@ jobs:
     steps:
       - name: 'Check out the code'
         uses: actions/checkout@v6
-      - run: ./build.sh
+      - run: ./build.sh amd64  # arm64 doesn't seem to work on CI
       - run: docker -u karenc -p ${{ secrets.DOCKER_HUB_RW_TOKEN }}
-      - run: ./push.sh
+      - run: ./push.sh amd64
