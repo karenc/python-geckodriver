@@ -1,13 +1,21 @@
 name: Build images and push to docker hub
 
-on: workflow_dispatch
+on: [push, workflow_dispatch]
 
 jobs:
-  deploy:
+  deploy-amd64:
     runs-on: 'ubuntu-latest'
     steps:
       - name: 'Check out the code'
         uses: actions/checkout@v6
-      - run: ./build.sh amd64  # arm64 doesn't seem to work on CI
+      - run: ./build.sh amd64
       - run: docker login -u karenc -p ${{ secrets.DOCKER_HUB_RW_TOKEN }}
       - run: ./push.sh amd64
+  deploy-arm64:
+    runs-on: 'ubuntu-24.04-arm'
+    steps:
+      - name: 'Check out the code'
+        uses: actions/checkout@v6
+      - run: ./build.sh arm64
+      - run: docker login -u karenc -p ${{ secrets.DOCKER_HUB_RW_TOKEN }}
+      - run: ./push.sh arm64
