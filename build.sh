@@ -1,7 +1,7 @@
 #!/bin/bash
 
 amd64() {
-    docker build --platform 'linux/amd64' -f Dockerfile.linux64 . -t karenc/python-geckodriver:linux64
+    docker build --platform 'linux/amd64' -f Dockerfile.linux-amd64 . -t karenc/python-geckodriver:linux-amd64
 }
 
 arm64() {
